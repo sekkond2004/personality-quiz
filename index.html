@@ -9,31 +9,114 @@
     <link rel="stylesheet" href ="./css/style.css">
 </head>
 <body>
-    <h1 class="text-center mt-4">YOUR QUIZ TITLE HERE</h1>
+    <h1 class="text-center mt-4">WHICH ROLE FITS YOU BEST?</h1>
     
     <!-- Start quiz element -->
     <div class="container d-flex justify-content-center" id="question-1">
       <div class="card my-4 p-4 question-block" style="width: 75%;">
-        <h4 class="mb-3">YOUR QUIZ QUESTION HERE</h4>
+        <h4 class="mb-3">How would you approach a problem in a group?</h4>
         <div class="row g-2">
           <div class="col-6">
-            <button class="btn btn-outline-primary w-100 answer-btn" data-answer="A">ANSWER CHOICE A</button>
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid = "1" data-answer="tanker">Face on</button>
           </div>
           <div class="col-6">
-            <button class="btn btn-outline-primary w-100 answer-btn" data-answer="B">ANSWER CHOICE B</button>
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid = "1" data-answer="swordman">Asking for help</button>
           </div>
           <div class="col-6">
-            <button class="btn btn-outline-primary w-100 answer-btn" data-answer="C">ANSWER CHOICE C</button>
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid = "1" data-answer="mage">Supporting others</button>
           </div>
           <div class="col-6">
-            <button class="btn btn-outline-primary w-100 answer-btn" data-answer="D">ANSWER CHOICE D</button>
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid = "1" data-answer="ranger">Cover the surroudings</button>
           </div>
         </div>
+        <p id="output-message" class="mt-3 text-muted"></p>
       </div>
     </div>
 
-    
-    
+    <div class="container d-flex justify-content-center" id="question-2">
+      <div class="card my-4 p-4 question-block" style="width: 75%;">
+        <h4 class="mb-3">Are you good with keeping position?</h4>
+        <div class="row g-2">
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="2" data-answer="100%">I sure am!</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="2" data-answer="75%">Yes, but I can get distracted...</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="2" data-answer="50%">Not really, but I'm not terrible.</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="2" data-answer="25%">Not at all...</button>
+          </div>
+        </div>
+        <p id="output-message" class="mt-3 text-muted"></p>
+      </div>
+    </div>
+
+    <div class="container d-flex justify-content-center" id="question-3">
+      <div class="card my-4 p-4 question-block" style="width: 75%;">
+        <h4 class="mb-3">How much stamina do you have?</h4>
+        <div class="row g-2">
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="3" data-answer="a lot">I can wrestle a bull for hours</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="3" data-answer="good amount">I can wrestle a deer for hours.</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="3" data-answer="enough">I can wrestle someone for hours</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="3" data-answer="what's moving?">I can't wrestle anything or anyone...</button>
+          </div>
+        </div>
+        <p id="output-message" class="mt-3 text-muted"></p>
+      </div>
+    </div>
+
+    <div class="container d-flex justify-content-center" id="question-4">
+      <div class="card my-4 p-4 question-block" style="width: 75%;">
+        <h4 class="mb-3">How flexible are you?</h4>
+        <div class="row g-2">
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="4" data-answer="liquid">I can do any yoga position!</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="4" data-answer="jelly">Enough flexible to do parkours.</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="4" data-answer="snake">I can get through a small whole if needed</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="4" data-answer="stick">I'm not flexible at all.</button>
+          </div>
+        </div>
+        <p id="output-message" class="mt-3 text-muted"></p>
+      </div>
+    </div>
+
+    <div class="container d-flex justify-content-center" id="question-5">
+      <div class="card my-4 p-4 question-block" style="width: 75%;">
+        <h4 class="mb-3">In a group, I am...</h4>
+        <div class="row g-2">
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="5" data-answer="decisions maker">The leader</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="5" data-answer="supporter">The supporter</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="5" data-answer="whatever">Doing my own stuff</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 answer-btn" data-buttonid ="5" data-answer="brain">The thinker</button>
+          </div>
+        </div>
+        <p id="output-message" class="mt-3 text-muted"></p>
+      </div>
+    </div>
+
     <!-- End quiz element -->
 
     <!-- Add more quiz elements here -->
