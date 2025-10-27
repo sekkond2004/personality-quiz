@@ -88,12 +88,17 @@ handleQuestion("question-5", {
 });
 
 // ===========================
-// DISPLAY RESULT FUNCTION
+// RESULT BUTTON EVENT
 // ===========================
+const resultButton = document.getElementById("result-button");
+if (resultButton) {
+  resultButton.addEventListener("click", displayResult);
+}
+
 function displayResult() {
   console.log("User answers:", userAnswers);
 
-  // Recalculate totalScore to ensure accurate result
+  // Reset totalScore before tallying
   totalScore = 0;
 
   const scoreMap = {
@@ -104,7 +109,6 @@ function displayResult() {
     "decisions maker": 4, supporter: 3, whatever: 2, brain: 1
   };
 
-  // Calculate score from all answers
   for (let key in userAnswers) {
     const answer = userAnswers[key];
     if (scoreMap[answer]) {
@@ -113,8 +117,7 @@ function displayResult() {
   }
 
   console.log("Final total score:", totalScore);
-
-  // Determine final result based on score
+  
   let resultMessage = "";
   if (totalScore >= 18) {
     resultMessage = `🏆 Your total score: ${totalScore} — You're a natural-born leader!`;
@@ -126,15 +129,15 @@ function displayResult() {
     resultMessage = `😴 Your total score: ${totalScore} — You might need to level up a bit before the next adventure!`;
   }
 
-  // Update the page
+  // Show result box and update text
   const resultContainer = document.getElementById("result-container");
-  resultContainer.textContent = resultMessage;
+  const resultText = document.getElementById("result-text");
+  resultText.textContent = resultMessage;
+  resultContainer.style.display = "block";
 }
 
 // ===========================
 // RESULT BUTTON EVENT
 // ===========================
-const resultButton = document.getElementById("result-button");
-if (resultButton) {
-  resultButton.addEventListener("click", displayResult);
-}
+document.getElementById("show-result").addEventListener("click", displayResult);
+
