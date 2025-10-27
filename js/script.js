@@ -1,129 +1,140 @@
 console.log("script.js connected!");
-let buttons1 = document.querySelectorAll("#question-1 button");
 
+// ===========================
+// GLOBAL VARIABLES
+// ===========================
+let totalScore = 0;
+let userAnswers = {};
 
-buttons1.forEach(function(button1) {
-  button1.addEventListener("click", function() {
-    // Previous highlight button code
-    buttons1.forEach(function(btn) {
-      btn.classList.remove("selected");
+// ===========================
+// HELPER FUNCTION TO HANDLE QUESTIONS
+// ===========================
+function handleQuestion(questionId, responses) {
+  const buttons = document.querySelectorAll(`#${questionId} button`);
+  const output = document.getElementById(`output-message${questionId.split('-')[1]}`);
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      // Remove highlight from other buttons
+      buttons.forEach(btn => btn.classList.remove("selected"));
+      button.classList.add("selected");
+
+      // Get user's selected answer
+      const answer = button.dataset.answer;
+      const response = responses[answer];
+
+      // Display message + update score
+      if (response) {
+        output.textContent = response.message;
+        totalScore += response.points;
+        console.log(`Current totalScore: ${totalScore}`);
+      }
+
+      // Save answer to global object
+      userAnswers[questionId] = answer;
+      console.log(userAnswers);
     });
-    button1.classList.add("selected");
-    
-    
-    let role = button1.getAttribute("data-answer");
-    let output1 = document.getElementById("output-message1");
-    
-    // Now we can write different responses based on the mood
-    if (role === "tanker") {
-      output1.textContent = "I see, you're the opener";
-    } else if (role === "swordman") {
-      output1.textContent = "It's always nice with some helps";
-    } else if (role === "mage") {
-      output1.textContent = "You always help others, how nice of you";
-    } else if (role === "ranger") {
-      output1.textContent = "Your vision is crucial for the group";
+  });
+}
+
+// ===========================
+// QUESTION 1
+// ===========================
+handleQuestion("question-1", {
+  tanker: { message: "I see, you're the opener", points: 4 },
+  swordman: { message: "It's always nice with some helps", points: 3 },
+  mage: { message: "You always help others, how nice of you", points: 2 },
+  ranger: { message: "Your vision is crucial for the group", points: 1 },
+});
+
+// ===========================
+// QUESTION 2
+// ===========================
+handleQuestion("question-2", {
+  "100%": { message: "Oh, you're experienced huh", points: 4 },
+  "75%": { message: "It's alright, everyone does", points: 3 },
+  "50%": { message: "I see, be more aware of your surrounding", points: 2 },
+  "25%": { message: "At least your best not to standing still", points: 1 },
+});
+
+// ===========================
+// QUESTION 3
+// ===========================
+handleQuestion("question-3", {
+  "a lot": { message: "Hey, strong man!", points: 4 },
+  "good amount": { message: "Very good, but not impressive", points: 3 },
+  enough: { message: "Yeah, you'll be fine!", points: 2 },
+  "what's moving?": { message: "Go hit the training ground!", points: 1 },
+});
+
+// ===========================
+// QUESTION 4
+// ===========================
+handleQuestion("question-4", {
+  liquid: { message: "Wow, you're like water", points: 4 },
+  jelly: { message: "Those parkours will be useful", points: 3 },
+  snake: { message: "Yeah, you'll be fine! (pt.2)", points: 2 },
+  stick: { message: "A standing stone huh...", points: 1 },
+});
+
+// ===========================
+// QUESTION 5
+// ===========================
+handleQuestion("question-5", {
+  "decisions maker": { message: "You must be a decisive person, eh?", points: 4 },
+  supporter: { message: "Everyone will need your support!", points: 3 },
+  whatever: { message: "You're mostly on your own, be careful", points: 2 },
+  brain: { message: "The brain, the vision!", points: 1 },
+});
+
+// ===========================
+// DISPLAY RESULT FUNCTION
+// ===========================
+function displayResult() {
+  console.log("User answers:", userAnswers);
+
+  // Recalculate totalScore to ensure accurate result
+  totalScore = 0;
+
+  const scoreMap = {
+    tanker: 4, swordman: 3, mage: 2, ranger: 1,
+    "100%": 4, "75%": 3, "50%": 2, "25%": 1,
+    "a lot": 4, "good amount": 3, enough: 2, "what's moving?": 1,
+    liquid: 4, jelly: 3, snake: 2, stick: 1,
+    "decisions maker": 4, supporter: 3, whatever: 2, brain: 1
+  };
+
+  // Calculate score from all answers
+  for (let key in userAnswers) {
+    const answer = userAnswers[key];
+    if (scoreMap[answer]) {
+      totalScore += scoreMap[answer];
     }
-  });
-});
+  }
 
-// 1. Create an empty object that will store user data
-let userAnswers1 = {}
-buttons1.forEach(function(button) {
-  button.addEventListener("click", function() {
-    // Highlight button code not shown
-    	
-    // 2. Get the data using the dataset attribute 
-    let buttonID = button.dataset.buttonid
-    let response = button.dataset.answer;
-    // 3. Store the data in the object
-    userAnswers1[buttonID] = response;
-    console.log(userAnswers1); // See current stored answers
-  });
-});
+  console.log("Final total score:", totalScore);
 
-let buttons2 = document.querySelectorAll("#question-2 button");
+  // Determine final result based on score
+  let resultMessage = "";
+  if (totalScore >= 18) {
+    resultMessage = `🏆 Your total score: ${totalScore} — You're a natural-born leader!`;
+  } else if (totalScore >= 12) {
+    resultMessage = `💪 Your total score: ${totalScore} — Strong and balanced, a great team player!`;
+  } else if (totalScore >= 7) {
+    resultMessage = `🌱 Your total score: ${totalScore} — You have potential! Keep training and improving.`;
+  } else {
+    resultMessage = `😴 Your total score: ${totalScore} — You might need to level up a bit before the next adventure!`;
+  }
 
+  // Update the page
+  const resultContainer = document.getElementById("result-container");
+  resultContainer.textContent = resultMessage;
+}
 
-buttons2.forEach(function(button2) {
-  button2.addEventListener("click", function() {
-    // Previous highlight button code
-    buttons2.forEach(function(btn) {
-      btn.classList.remove("selected");
-    });
-    button2.classList.add("selected");
-    
-    
-    let position = button2.getAttribute("data-answer");
-    let output2 = document.getElementById("output-message2");
-    
-    // Now we can write different responses based on the mood
-    if (position === "100%") {
-      output2.textContent = "Oh, you're experienced huh";
-    } else if (position === "75%") {
-      output2.textContent = "It's alright, everyone does";
-    } else if (position === "50%") {
-      output2.textContent = "I see, be more aware of your surrounding";
-    } else if (position === "25%") {
-      output2.textContent = "At least your best not to standing still";
-    }
-  });
-});
-
-// 1. Create an empty object that will store user data
-let userAnswers2 = {}
-buttons2.forEach(function(button) {
-  button.addEventListener("click", function() {
-    // Highlight button code not shown
-    	
-    // 2. Get the data using the dataset attribute 
-    let buttonID = button.dataset.buttonid
-    let response = button.dataset.answer;
-    // 3. Store the data in the object
-    userAnswers2[buttonID] = response;
-    console.log(userAnswers2); // See current stored answers
-  });
-});
-
-let buttons3 = document.querySelectorAll("#question-2 button");
-
-
-buttons3.forEach(function(button3) {
-  button3.addEventListener("click", function() {
-    // Previous highlight button code
-    buttons3.forEach(function(btn) {
-      btn.classList.remove("selected");
-    });
-    button3.classList.add("selected");
-    
-    
-    let stamina = button3.getAttribute("data-answer");
-    let output3 = document.getElementById("output-message3");
-    
-    // Now we can write different responses based on the mood
-    if (stamina === "a lot") {
-      output3.textContent = "Hey, strong man!";
-    } else if (stamina === "good amount") {
-      output3.textContent = "Very good, but not impressive";
-    } else if (stamina === "enough") {
-      output3.textContent = "Yeah, you'll be fine!";
-    } else if (stamina === "what's moving?") {
-      output3.textContent = "Go hit the training ground! ";
-    }
-  });
-});
-
-// 1. Create an empty object that will store user data
-let userAnswers3 = {}
-buttons3.forEach(function(button) {
-  button.addEventListener("click", function() {
-    // Highlight button code not shown
-    	
-    // 2. Get the data using the dataset attribute 
-    let buttonID = button.dataset.buttonid
-    let response = button.dataset.answer;
-    // 3. Store the data in the object
-    userAnswers3[buttonID] = response;
-    console.log(userAnswers3); // See current stored answers
-  });
-});
+// ===========================
+// RESULT BUTTON EVENT
+// ===========================
+const resultButton = document.getElementById("result-button");
+if (resultButton) {
+  resultButton.addEventListener("click", displayResult);
+}
