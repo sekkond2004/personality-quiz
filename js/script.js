@@ -12,7 +12,7 @@ buttons1.forEach(function(button1) {
     
     
     let role = button1.getAttribute("data-answer");
-    let output1 = document.getElementById("output-message");
+    let output1 = document.getElementById("output-message1");
     
     // Now we can write different responses based on the mood
     if (role === "tanker") {
@@ -55,10 +55,10 @@ buttons2.forEach(function(button2) {
     
     
     let position = button2.getAttribute("data-answer");
-    let output2 = document.getElementById("output-message");
+    let output2 = document.getElementById("output-message2");
     
     // Now we can write different responses based on the mood
-    if (position === "100#") {
+    if (position === "100%") {
       output2.textContent = "Oh, you're experienced huh";
     } else if (position === "75%") {
       output2.textContent = "It's alright, everyone does";
@@ -82,5 +82,48 @@ buttons2.forEach(function(button) {
     // 3. Store the data in the object
     userAnswers2[buttonID] = response;
     console.log(userAnswers2); // See current stored answers
+  });
+});
+
+let buttons3 = document.querySelectorAll("#question-2 button");
+
+
+buttons3.forEach(function(button3) {
+  button3.addEventListener("click", function() {
+    // Previous highlight button code
+    buttons3.forEach(function(btn) {
+      btn.classList.remove("selected");
+    });
+    button3.classList.add("selected");
+    
+    
+    let stamina = button3.getAttribute("data-answer");
+    let output3 = document.getElementById("output-message3");
+    
+    // Now we can write different responses based on the mood
+    if (stamina === "a lot") {
+      output3.textContent = "Hey, strong man!";
+    } else if (stamina === "good amount") {
+      output3.textContent = "Very good, but not impressive";
+    } else if (stamina === "enough") {
+      output3.textContent = "Yeah, you'll be fine!";
+    } else if (stamina === "what's moving?") {
+      output3.textContent = "Go hit the training ground! ";
+    }
+  });
+});
+
+// 1. Create an empty object that will store user data
+let userAnswers3 = {}
+buttons3.forEach(function(button) {
+  button.addEventListener("click", function() {
+    // Highlight button code not shown
+    	
+    // 2. Get the data using the dataset attribute 
+    let buttonID = button.dataset.buttonid
+    let response = button.dataset.answer;
+    // 3. Store the data in the object
+    userAnswers3[buttonID] = response;
+    console.log(userAnswers3); // See current stored answers
   });
 });
